@@ -1,6 +1,6 @@
 import { LoginDto } from "./dtos/login.dto";
 import { AuthService } from "./auth.service";
-import { ExpressRequest } from "src/token/token.dto";
+import { ExpressRequest } from "src/ExpressRequest/token.dto";
 import { CreateAccountDto } from "src/domain/user/dtos/create-account.dto";
 export declare class AuthController {
     private readonly authService;

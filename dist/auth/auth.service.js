@@ -22,8 +22,6 @@ let AuthService = class AuthService {
     }
     async login(loginDto) {
         const user = await this.userRepository.findOneBy({ email: loginDto.email });
-        console.log(user);
-        console.log(loginDto);
         if (!user || !(await bcryptjs.compare(loginDto.password, user.password))) {
             throw new common_1.UnauthorizedException('Invalid credentials');
         }
