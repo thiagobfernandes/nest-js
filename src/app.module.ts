@@ -35,6 +35,6 @@ import { HttpExceptionFilter } from './filters/exception.filter';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes({ path: '*', method: RequestMethod.ALL }); 
+    consumer.apply(LoggerMiddleware).forRoutes('*'); 
   }
 }
