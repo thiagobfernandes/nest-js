@@ -12,14 +12,13 @@ const logger_1 = require("./logger");
 let LoggerMiddleware = class LoggerMiddleware {
     use(req, res, next) {
         const startTime = Date.now();
-        req.once('readable', () => {
-            logger_1.Logger.startRoute(`${req.method} ${req.url} HTTP/${req?.httpVersion} ${req.headers?.['user-agent']} ${req.headers?.['forwarded']}`);
-        });
+        logger_1.Logger.startRoute(`${req.method} ${req.url} HTTP/${req.httpVersion} ${req.url} ${req.headers?.['user-agent']}`);
         res.once('finish', () => {
             const duration = Date.now() - startTime;
-            const logMessage = `${req.method} ${req.url} ${res.statusCode} - ${duration}ms`;
+            const logMessage = ` ${req.method}  HTTP/${req.httpVersion}  ${res.statusCode} ${req.url} ${req.headers?.['user-agent']} - ${duration}ms`;
             logger_1.Logger.endRoute(logMessage);
         });
+        next();
     }
 };
 exports.LoggerMiddleware = LoggerMiddleware;

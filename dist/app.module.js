@@ -17,7 +17,7 @@ const auth_module_1 = require("./auth/auth.module");
 const logger_middleware_1 = require("./logger/logger.middleware");
 let AppModule = class AppModule {
     configure(consumer) {
-        consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes({ path: '*', method: common_1.RequestMethod.ALL });
+        consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes('*');
     }
 };
 exports.AppModule = AppModule;
