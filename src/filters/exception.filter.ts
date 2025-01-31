@@ -1,5 +1,6 @@
-import { ArgumentsHost, Catch, ExceptionFilter, Logger } from "@nestjs/common";
+import { ArgumentsHost, Catch, ExceptionFilter,  } from "@nestjs/common";
 import { ExceptionError } from "src/generic-dtos/exceptionError/exception-error.dto";
+import { Logger } from "src/logger/logger";
 
 
 
