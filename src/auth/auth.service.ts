@@ -7,6 +7,7 @@ import { UserRepository } from "src/domain/user/repositories/user.repository";
 import { CreateAccountDto } from "src/domain/user/dtos/create-account.dto";
 import { UserEntity } from "src/domain/user/entities/user.entity";
 import { hash } from "bcryptjs";
+import { ExceptionError } from "src/generic-dtos/exceptionError/exception-error.dto";
 
 
 @Injectable()
@@ -20,7 +21,7 @@ export class AuthService {
     async login(loginDto: LoginDto) {
         const user = await this.userRepository.findOneBy({ email: loginDto.email });
         if (!user || !(await bcryptjs.compare(loginDto.password, user.password))) {
-          throw new UnauthorizedException('Invalid credentials');
+          throw new ExceptionError('Invalid credentials', 'UNAUTHORIZED', 401, 'Invalid credentials');
         }
     
         const payload = { id: user.id, email: user.email };

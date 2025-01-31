@@ -15,6 +15,7 @@ const bcryptjs = require("bcryptjs");
 const jwt_1 = require("@nestjs/jwt");
 const user_repository_1 = require("../domain/user/repositories/user.repository");
 const bcryptjs_1 = require("bcryptjs");
+const exception_error_dto_1 = require("../generic-dtos/exceptionError/exception-error.dto");
 let AuthService = class AuthService {
     constructor(jwt, userRepository) {
         this.jwt = jwt;
@@ -22,10 +23,8 @@ let AuthService = class AuthService {
     }
     async login(loginDto) {
         const user = await this.userRepository.findOneBy({ email: loginDto.email });
-        console.log(user);
-        console.log(loginDto);
         if (!user || !(await bcryptjs.compare(loginDto.password, user.password))) {
-            throw new common_1.UnauthorizedException('Invalid credentials');
+            throw new exception_error_dto_1.ExceptionError('Invalid credentials', 'UNAUTHORIZED', 401, 'Invalid credentials');
         }
         const payload = { id: user.id, email: user.email };
         const token = this.jwt.sign(payload);
