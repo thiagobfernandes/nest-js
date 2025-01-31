@@ -1,4 +1,4 @@
-import Joi from "joi";
+import * as Joi from 'joi';
 export declare class LoginSchema {
     static loginSchema: {
         email: Joi.StringSchema<string>;
