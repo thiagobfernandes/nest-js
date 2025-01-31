@@ -2,7 +2,7 @@ import { ExecutionContext } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Observable } from "rxjs";
 import { UserEntity } from "src/domain/user/entities/user.entity";
-import { ExpressRequest } from "../ExpressRequest/token.dto";
+import { ExpressRequest } from "../generic-dtos/expressRequest/token.dto";
 import { TokenPayload } from "src/auth/dtos/token.payload";
 
 export class JwtGuard extends AuthGuard('jwt') {

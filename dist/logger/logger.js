@@ -4,6 +4,7 @@ exports.Logger = void 0;
 class Logger {
     static log(level, message) {
         const messageReplace = message.replace('\n', '');
+<<<<<<< HEAD
         console.log(`${new Date().toJSON()} ${level} ${messageReplace}`);
     }
     static jsonErrorReplacer(_key, value) {
@@ -29,6 +30,21 @@ class Logger {
     }
     static error(message, error) {
         this.log('[ERROR]', `${message} ~ Exception: ${JSON.stringify(error, this.jsonErrorReplacer)}`);
+=======
+        console.log(`${new Date().toJSON} ${messageReplace}`);
+    }
+    static startRoute(message) {
+        this.log('[------->]', message);
+    }
+    static endRoute(message) {
+        this.log('[<------]', message);
+    }
+    static startJob(message) {
+        this.log('[------->]', message);
+    }
+    static endJob(message) {
+        this.log('[<------]', message);
+>>>>>>> cefa71bb8dff91a949cd89142c2f87886da7e3c4
     }
 }
 exports.Logger = Logger;
