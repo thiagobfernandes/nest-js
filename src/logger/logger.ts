@@ -1,3 +1,6 @@
+import { ExceptionError } from "src/generic-dtos/exception-error.dto";
+import { ExceptionDTO } from "src/generic-dtos/exception.dto";
+
 export class Logger{ 
 private static log(level:string, message:string):void {
     const messageReplace = message.replace('\n', '');
@@ -7,7 +10,6 @@ private static log(level:string, message:string):void {
 
 private static jsonErrorReplacer(_key: any, value: any): any {
     return value instanceof Error ? { name: value.name, message: value.message, stack: value.stack } : value;
-
 }
 
 public static startRoute(message: string): void {
@@ -36,6 +38,16 @@ public static warn(message: string): void {
 
 public static error(message: string, error?: any): void {
     this.log('[ERROR]', `${message} ~ Exception: ${JSON.stringify(error, this.jsonErrorReplacer)}`)
+}
+
+private  static infer (message:string, error:any):void {
+    if(error && error instanceof ExceptionDTO){
+    const { type, ...exceptionDto} = error
+    type === 'WARN' ? this.warn(message) : this.error(message, exceptionDto)
+    } else {
+        this.error(message, error)
+    }
+
 }
 
 }

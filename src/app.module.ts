@@ -6,8 +6,12 @@ import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './env';
 import { AuthModule } from './auth/auth.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpExceptionFilter } from './filters/exception.filter';
+import { Interceptor } from './interceptor/interceptor';
+import { Not } from 'typeorm';
+import { NotFoundExceptionFilter } from './filters/error.filter';
+import { JoiExceptionFilter } from './filters/joi-exception';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -30,8 +34,21 @@ import { HttpExceptionFilter } from './filters/exception.filter';
     {
       provide:APP_FILTER,
       useClass:HttpExceptionFilter
+    },
+    {
+      provide:APP_INTERCEPTOR,
+      useClass:Interceptor
+    },
+    {
+      provide:APP_FILTER,
+      useClass:NotFoundExceptionFilter
+    },
+    {
+      provide:APP_FILTER,
+      useClass:JoiExceptionFilter
     }
   ],
+
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

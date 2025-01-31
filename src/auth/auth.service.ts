@@ -7,7 +7,7 @@ import { UserRepository } from "src/domain/user/repositories/user.repository";
 import { CreateAccountDto } from "src/domain/user/dtos/create-account.dto";
 import { UserEntity } from "src/domain/user/entities/user.entity";
 import { hash } from "bcryptjs";
-import { ExceptionError } from "src/generic-dtos/exceptionError/exception-error.dto";
+import { ExceptionError } from "src/generic-dtos/exception-error.dto";
 
 
 @Injectable()
