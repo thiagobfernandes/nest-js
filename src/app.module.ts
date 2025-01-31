@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './env';
 import { AuthModule } from './auth/auth.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
+import { APP_FILTER } from '@nestjs/core';
+import { HttpExceptionFilter } from './filters/exception.filter';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -24,13 +26,12 @@ import { LoggerMiddleware } from './logger/logger.middleware';
     UserModule,
     AuthModule],
   controllers: [],
-  providers: [],
-
-
-
-
-
-
+  providers: [
+    {
+      provide:APP_FILTER,
+      useClass:HttpExceptionFilter
+    }
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

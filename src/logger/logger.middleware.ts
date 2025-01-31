@@ -8,9 +8,8 @@ export class LoggerMiddleware implements NestMiddleware {
     use(req:any, res:any, next: () => void){
         const startTime = Date.now();
 
-        req.once('readable', () => {
+      
             Logger.startRoute(`${req.method} ${req.url} HTTP/${req?.httpVersion} ${req.headers?.['user-agent']} ${req.headers?.['forwarded']}`)
-        })
 
         res.once('finish', () => {
             const duration = Date.now() - startTime
@@ -18,5 +17,7 @@ export class LoggerMiddleware implements NestMiddleware {
       
             Logger.endRoute(logMessage)
           }) 
-    }
+          next()
+        }
+        
 }

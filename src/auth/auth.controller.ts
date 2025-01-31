@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
 import { LoginDto } from "./dtos/login.dto";
 import { AuthService } from "./auth.service";
 import { JwtGuard } from "./auth.guard";
-import { ExpressRequest } from "src/ExpressRequest/token.dto";
+import { ExpressRequest } from "src/generic-dtos/expressRequest/token.dto";
 import { CreateAccountDto } from "src/domain/user/dtos/create-account.dto";
 
 
