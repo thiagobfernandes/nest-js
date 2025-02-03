@@ -1,4 +1,4 @@
-import { QuestionEntity } from 'src/domain/question/entities/question.entity';
+import { QuestionEntity } from "src/domain/question/entities/question.entity";
 
 export class UserDTO {
   id: number;

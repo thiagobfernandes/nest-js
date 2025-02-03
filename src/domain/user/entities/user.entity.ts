@@ -1,24 +1,24 @@
-import { QuestionEntity } from 'src/domain/question/entities/question.entity';
+import { QuestionEntity } from "src/domain/question/entities/question.entity";
 import {
   Column,
   Entity,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-} from 'typeorm';
+} from "typeorm";
 
-@Entity('user')
+@Entity("user")
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'name', type: 'varchar', nullable: true })
+  @Column({ name: "name", type: "varchar", nullable: true })
   name: string;
 
-  @Column({ name: 'email', type: 'varchar', nullable: true })
+  @Column({ name: "email", type: "varchar", nullable: true })
   email: string;
 
-  @Column({ name: 'password', type: 'varchar' })
+  @Column({ name: "password", type: "varchar" })
   password: string;
 
   @OneToMany(() => QuestionEntity, (user) => user.author)

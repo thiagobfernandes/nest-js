@@ -1,5 +1,5 @@
-import { JoiSchema } from 'nestjs-joi';
-import { CreateAccountSchema } from '../schemas/user.dto.schema';
+import { JoiSchema } from "nestjs-joi";
+import { CreateAccountSchema } from "../schemas/user.dto.schema";
 
 export class CreateAccountDto {
   @JoiSchema(CreateAccountSchema.createAccount.name)
