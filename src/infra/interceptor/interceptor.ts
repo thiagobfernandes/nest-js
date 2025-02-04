@@ -8,7 +8,7 @@ import {
 import { Observable } from "rxjs";
 import { TokenPayload } from "../auth/dtos/token.payload";
 import { UserEntity } from "src/domain/user/entities/user.entity";
-import { ExpressRequest } from "src/generic-dtos/token.dto";
+import { ExpressRequest } from "../generic-dtos/express-request.dto";
 
 @Injectable()
 export class Interceptor implements NestInterceptor {

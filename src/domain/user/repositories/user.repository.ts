@@ -19,10 +19,12 @@ export class UserRepository extends Repository<UserEntity> {
   async findOneById(id:number):Promise<UserEntity> {
     const cacheHit = await this.cache.get(`user:${id}`)
     if (cacheHit) {
+      console.log("cache")
       return JSON.parse(cacheHit);
     }
     const user = await this.repository.findOneBy({id})
     await this.cache.set(`user:${id}`, JSON.stringify(user))
+    console.log("banco")
     return user
 }
 
