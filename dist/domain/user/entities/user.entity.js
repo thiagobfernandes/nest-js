@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
-const question_entity_1 = require("src/domain/question/entities/question.entity");
 const typeorm_1 = require("typeorm");
 let UserEntity = class UserEntity {
 };
@@ -31,10 +30,6 @@ __decorate([
     (0, typeorm_1.Column)({ name: "password", type: "varchar" }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => question_entity_1.QuestionEntity, (user) => user.author),
-    __metadata("design:type", Array)
-], UserEntity.prototype, "question", void 0);
 exports.UserEntity = UserEntity = __decorate([
     (0, typeorm_1.Entity)("user")
 ], UserEntity);

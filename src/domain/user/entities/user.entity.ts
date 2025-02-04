@@ -1,4 +1,3 @@
-import { QuestionEntity } from "src/domain/question/entities/question.entity";
 import {
   Column,
   Entity,
@@ -21,6 +20,5 @@ export class UserEntity {
   @Column({ name: "password", type: "varchar" })
   password: string;
 
-  @OneToMany(() => QuestionEntity, (user) => user.author)
-  question: QuestionEntity[];
+
 }

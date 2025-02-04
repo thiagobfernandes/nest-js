@@ -1,4 +1,3 @@
-import { QuestionEntity } from "src/domain/question/entities/question.entity";
 import { UserEntity } from "src/domain/user/entities/user.entity";
 
 export class TokenPayload {
