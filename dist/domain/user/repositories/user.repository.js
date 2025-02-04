@@ -17,16 +17,34 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../entities/user.entity");
 const typeorm_2 = require("typeorm");
 const common_1 = require("@nestjs/common");
+const cache_repository_1 = require("../../../infra/cache/redis/cache-repository");
 let UserRepository = class UserRepository extends typeorm_2.Repository {
-    constructor(repository) {
+    constructor(repository, cache) {
         super(repository.target, repository.manager, repository.queryRunner);
         this.repository = repository;
+        this.cache = cache;
+    }
+    async findOneById(id) {
+        const cacheHit = await this.cache.get(`user:${id}`);
+        if (cacheHit) {
+            return JSON.parse(cacheHit);
+        }
+        const user = await this.repository.findOneBy({ id });
+        await this.cache.set(`user:${id}`, JSON.stringify(user));
+        return user;
+    }
+    async saveUser(user) {
+        const createUser = await this.repository.save(user);
+        await this.cache.del(`user:${createUser.id}`);
+        return createUser;
     }
 };
 exports.UserRepository = UserRepository;
 exports.UserRepository = UserRepository = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, common_1.Inject)(cache_repository_1.CacheRepository)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        cache_repository_1.CacheRepository])
 ], UserRepository);
 //# sourceMappingURL=user.repository.js.map

@@ -12,6 +12,6 @@ let QuestionController = class QuestionController {
 };
 exports.QuestionController = QuestionController;
 exports.QuestionController = QuestionController = __decorate([
-    (0, common_1.Controller)('question')
+    (0, common_1.Controller)("question")
 ], QuestionController);
 //# sourceMappingURL=question.controller.js.map

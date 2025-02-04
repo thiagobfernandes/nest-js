@@ -5,7 +5,6 @@ import {
   NotFoundException,
 } from "@nestjs/common";
 import { ExceptionError } from "src/infra/generic-dtos/exception-error.dto";
-import { ExpressRequest } from "src/infra/generic-dtos/token.dto";
 import { Response } from "express";
 
 @Catch(NotFoundException)

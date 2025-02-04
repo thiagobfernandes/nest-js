@@ -7,8 +7,6 @@ export declare class Logger {
     static debug(message: string): void;
     static info(message: string): void;
     static warn(message: string): void;
+    static Login(message: string): void;
     static error(message: string, error?: any): void;
-    static endRoute(message: string): void;
-    static startJob(message: string): void;
-    static endJob(message: string): void;
 }

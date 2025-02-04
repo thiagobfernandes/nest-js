@@ -1,17 +1,16 @@
 import { MiddlewareConsumer, Module, RequestMethod } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { QuestionModule } from "./domain/question/question.module";
 import { UserModule } from "./domain/user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { envSchema } from "./env";
-import { AuthModule } from "./auth/auth.module";
-import { LoggerMiddleware } from "./logger/logger.middleware";
-import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
-import { HttpExceptionFilter } from "./filters/exception.filter";
-import { Interceptor } from "./interceptor/interceptor";
-import { Not } from "typeorm";
-import { NotFoundExceptionFilter } from "./filters/error.filter";
-import { JoiExceptionFilter } from "./filters/joi-exception";
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from "@nestjs/core";
+import { AuthModule } from "./infra/auth/auth.module"
+import { HttpExceptionFilter } from "./infra/filters/exception.filter";
+import { NotFoundExceptionFilter } from "./infra/filters/error.filter";
+import { JoiExceptionFilter } from "./infra/filters/joi-exception";
+import { Interceptor } from "./infra/interceptor/interceptor";
+import { LoggerMiddleware } from "./infra/logger/logger.middleware";
+import { JwtGuard } from "./infra/auth/auth.guard";
 
 @Module({
   imports: [
@@ -27,12 +26,15 @@ import { JoiExceptionFilter } from "./filters/joi-exception";
       logging: ["query", "error", "schema"],
       logger: "advanced-console",
     }),
-    QuestionModule,
     UserModule,
-    AuthModule,
+    AuthModule
   ],
   controllers: [],
   providers: [
+    {
+      provide:APP_GUARD,
+      useClass: JwtGuard
+    },
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
@@ -49,6 +51,7 @@ import { JoiExceptionFilter } from "./filters/joi-exception";
       provide: APP_FILTER,
       useClass: JoiExceptionFilter,
     },
+
   ],
 })
 export class AppModule {

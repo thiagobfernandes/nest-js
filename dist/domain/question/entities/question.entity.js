@@ -20,32 +20,32 @@ __decorate([
     __metadata("design:type", Number)
 ], QuestionEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'author_id', type: 'int' }),
+    (0, typeorm_1.Column)({ name: "author_id", type: "int" }),
     __metadata("design:type", Number)
 ], QuestionEntity.prototype, "authorId", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'title', type: 'varchar' }),
+    (0, typeorm_1.Column)({ name: "title", type: "varchar" }),
     __metadata("design:type", String)
 ], QuestionEntity.prototype, "title", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'content', type: 'varchar' }),
+    (0, typeorm_1.Column)({ name: "content", type: "varchar" }),
     __metadata("design:type", String)
 ], QuestionEntity.prototype, "content", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'slug', type: 'varchar' }),
+    (0, typeorm_1.Column)({ name: "slug", type: "varchar" }),
     __metadata("design:type", String)
 ], QuestionEntity.prototype, "slug", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'created_at', type: 'datetime' }),
+    (0, typeorm_1.Column)({ name: "created_at", type: "datetime" }),
     __metadata("design:type", Date)
 ], QuestionEntity.prototype, "createdAt", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'updated_at', type: 'datetime' }),
+    (0, typeorm_1.Column)({ name: "updated_at", type: "datetime" }),
     __metadata("design:type", Date)
 ], QuestionEntity.prototype, "updatedAt", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, (user) => user.question, { nullable: false }),
-    (0, typeorm_1.JoinColumn)({ name: 'author_id', referencedColumnName: 'id' }),
+    (0, typeorm_1.JoinColumn)({ name: "author_id", referencedColumnName: "id" }),
     __metadata("design:type", user_entity_1.UserEntity)
 ], QuestionEntity.prototype, "author", void 0);
 exports.QuestionEntity = QuestionEntity = __decorate([

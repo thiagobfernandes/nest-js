@@ -7,12 +7,16 @@ import { hash } from "bcryptjs";
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async create(user: CreateAccountDto): Promise<UserEntity> {
-    const userMail = await this.userRepository.findBy({ email: user.email });
-    if (userMail) {
-      throw new Error("User already exists");
-    }
-    user.password = await hash(user.password, 8);
-    return this.userRepository.save(user);
+ 
+  async listUser (id:number):Promise<Partial<UserEntity>> {
+    return this.userRepository.findOneById(id)
   }
+
+  async createUser (user:CreateAccountDto):Promise<UserEntity> {
+    user.password = await hash(user.password, 8);
+    return this.userRepository.saveUser(user)
+  }
+
+  
+
 }

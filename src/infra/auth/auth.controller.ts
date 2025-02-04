@@ -1,12 +1,9 @@
 import { Body, Controller, Get, HttpStatus, Post, Req, UseGuards } from "@nestjs/common";
 import { LoginDto } from "./dtos/login.dto";
 import { AuthService } from "./auth.service";
-import { JwtGuard } from "./auth.guard";
-import { ExpressRequest } from "src/infra/generic-dtos/token.dto";
 import { CreateAccountDto } from "src/domain/user/dtos/create-account.dto";
 import { JoiPipe } from "nestjs-joi";
 import { CurrentUser } from "../decorators/create-user-decorator";
-import { UserEntity } from "src/domain/user/entities/user.entity";
 import { Public } from "./public";
 import { UserDTO } from "src/domain/user/dtos/user-dto";
 import { ResponseDTO } from "../generic-dtos/response.dto";

@@ -17,13 +17,12 @@ let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    async create(user) {
-        const userMail = await this.userRepository.findBy({ email: user.email });
-        if (userMail) {
-            throw new Error('User already exists');
-        }
+    async listUser(id) {
+        return this.userRepository.findOneById(id);
+    }
+    async createUser(user) {
         user.password = await (0, bcryptjs_1.hash)(user.password, 8);
-        return this.userRepository.save(user);
+        return this.userRepository.saveUser(user);
     }
 };
 exports.UserService = UserService;

@@ -6,9 +6,9 @@ import {
   NestInterceptor,
 } from "@nestjs/common";
 import { Observable } from "rxjs";
-import { ExpressRequest } from "src/infra/generic-dtos/token.dto";
 import { TokenPayload } from "../auth/dtos/token.payload";
 import { UserEntity } from "src/domain/user/entities/user.entity";
+import { ExpressRequest } from "src/generic-dtos/token.dto";
 
 @Injectable()
 export class Interceptor implements NestInterceptor {

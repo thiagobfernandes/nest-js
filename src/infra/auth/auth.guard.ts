@@ -2,7 +2,6 @@ import { ExecutionContext, Injectable } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Observable } from "rxjs";
 import { UserEntity } from "src/domain/user/entities/user.entity";
-import { ExpressRequest } from "../generic-dtos/token.dto";
 import { TokenPayload } from "src/infra/auth/dtos/token.payload";
 import { ExceptionDTO } from "src/infra/generic-dtos/exception.dto";
 import { ExceptionError } from "src/infra/generic-dtos/exception-error.dto";

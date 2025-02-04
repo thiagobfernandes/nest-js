@@ -18,8 +18,7 @@ exports.QuestionModule = QuestionModule = __decorate([
     (0, common_1.Module)({
         imports: [question_entity_1.QuestionEntity],
         controllers: [question_controller_1.QuestionController],
-        providers: [question_service_1.QuestionService
-        ],
+        providers: [question_service_1.QuestionService],
     })
 ], QuestionModule);
 //# sourceMappingURL=question.module.js.map
