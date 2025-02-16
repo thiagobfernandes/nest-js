@@ -21,7 +21,6 @@ Installation
 
 git clone https://github.com/yourusername/network-monitoring-project.git
 
-Navigate to the project directory:
 
 cd network-monitoring-project
 
@@ -30,10 +29,17 @@ Install dependencies:
 npm install
 
 Run the application:
-
-    npm run start
+    
+    g++ ./c++/websocket/websocket.c++ -o network 
+    
+    sudo ./network
+    
+    yarn dev || npm run dev
 
 Migration to C++ Desktop Application
+
+
+  
 
 Currently, the project is being migrated to a C++ desktop application to improve performance and efficiency. The desktop version will integrate more directly with the operating system’s network interfaces and allow for greater control over network traffic monitoring.
 Screenshots/Diagrams
