@@ -44,7 +44,7 @@ export class SocketService {
     });
 
     this.client.on("error", (err) => {
-      Logger.error(`❌ Error connecting to TCP: ${err}`);
+      Logger.error(` Error connecting to TCP: ${err}`);
     });
 
     return new ResponseDTO(
