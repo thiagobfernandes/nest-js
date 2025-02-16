@@ -11,7 +11,7 @@ import { Server } from "socket.io";
   cors: {
     origin: "*",
   },
-}) // Agora corretamente aplicado à classe
+}) 
 @Injectable()
 export class GatewayWebSocket implements OnModuleInit {
   @WebSocketServer()
@@ -25,6 +25,7 @@ export class GatewayWebSocket implements OnModuleInit {
 
   @SubscribeMessage("networkDataMessage")
   networkDataMessage(@MessageBody() body: any) {
-    console.log(`Received message: `, body); // Para ver o conteúdo do body
+    //here i'm can emit to a client but currently i want just see the network logs
+    console.log(`Received message: `, body); 
   }
 }
