@@ -16,15 +16,15 @@ class CreateAccountDto {
 }
 exports.CreateAccountDto = CreateAccountDto;
 __decorate([
-    (0, nestjs_joi_1.JoiSchema)(user_dto_schema_1.CreateAccountSchema.createAccount.name),
+    (0, nestjs_joi_1.JoiSchema)(user_dto_schema_1.CreateAccountSchema.createAccount.name.required()),
     __metadata("design:type", String)
 ], CreateAccountDto.prototype, "name", void 0);
 __decorate([
-    (0, nestjs_joi_1.JoiSchema)(user_dto_schema_1.CreateAccountSchema.createAccount.email),
+    (0, nestjs_joi_1.JoiSchema)(user_dto_schema_1.CreateAccountSchema.createAccount.email.required()),
     __metadata("design:type", String)
 ], CreateAccountDto.prototype, "email", void 0);
 __decorate([
-    (0, nestjs_joi_1.JoiSchema)(user_dto_schema_1.CreateAccountSchema.createAccount.password),
+    (0, nestjs_joi_1.JoiSchema)(user_dto_schema_1.CreateAccountSchema.createAccount.password.required()),
     __metadata("design:type", String)
 ], CreateAccountDto.prototype, "password", void 0);
 //# sourceMappingURL=create-account.dto.js.map

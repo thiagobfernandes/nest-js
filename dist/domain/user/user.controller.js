@@ -14,19 +14,36 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
+const user_service_1 = require("./user.service");
 const create_account_dto_1 = require("./dtos/create-account.dto");
 let UserController = class UserController {
-    async createAccount(body) { }
+    constructor(userService) {
+        this.userService = userService;
+    }
+    async getSingleUser(id) {
+        return await this.userService.listUser(id);
+    }
+    async createUser(user) {
+        return await this.userService.createUser(user);
+    }
 };
 exports.UserController = UserController;
 __decorate([
-    (0, common_1.Post)('/create-account'),
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getSingleUser", null);
+__decorate([
+    (0, common_1.Post)("register"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_account_dto_1.CreateAccountDto]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "createAccount", null);
+], UserController.prototype, "createUser", null);
 exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)('user')
+    (0, common_1.Controller)("user"),
+    __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

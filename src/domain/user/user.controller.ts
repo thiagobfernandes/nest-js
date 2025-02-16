@@ -1,9 +1,20 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { UserRepository } from './repositories/user.repository';
-import { CreateAccountDto } from './dtos/create-account.dto';
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { CreateAccountDto } from "./dtos/create-account.dto";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
-  @Post('/create-account')
-  async createAccount(@Body() body: CreateAccountDto) {}
+  constructor(private readonly userService: UserService) {}
+
+  @Get(':id')
+  async getSingleUser(@Param('id') id: number) {
+    return await this.userService.listUser(id);
+  }
+
+  @Post("register")
+  async createUser(@Body() user:CreateAccountDto) {
+  return await this.userService.createUser(user)
+  }
+
+  
 }

@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import * as Joi from "joi";
 export declare class CreateAccountSchema {
     static createAccount: {
         name: Joi.StringSchema<string>;

@@ -9,37 +9,68 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const question_module_1 = require("./domain/question/question.module");
 const user_module_1 = require("./domain/user/user.module");
-const config_1 = require("@nestjs/config");
 const env_1 = require("./env");
-const auth_module_1 = require("./auth/auth.module");
-const logger_middleware_1 = require("./logger/logger.middleware");
+const core_1 = require("@nestjs/core");
+const auth_module_1 = require("./infra/auth/auth.module");
+const exception_filter_1 = require("./infra/filters/exception.filter");
+const error_filter_1 = require("./infra/filters/error.filter");
+const joi_exception_1 = require("./infra/filters/joi-exception");
+const interceptor_1 = require("./infra/interceptor/interceptor");
+const logger_middleware_1 = require("./infra/logger/logger.middleware");
+const auth_guard_1 = require("./infra/auth/auth.guard");
+const config_1 = require("@nestjs/config");
+const socket_module_1 = require("./domain/socket/socket.module");
+const gateway_module_1 = require("./infra/gateway/gateway.module");
 let AppModule = class AppModule {
     configure(consumer) {
-        consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes('*');
+        consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes("*");
     }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [config_1.ConfigModule.forRoot({
+        imports: [
+            config_1.ConfigModule.forRoot({
                 validationSchema: env_1.envSchema,
-                isGlobal: true
+                isGlobal: true,
             }),
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'sqlite',
-                database: 'db.sqlite',
+                type: "sqlite",
+                database: "db.sqlite",
                 synchronize: true,
-                entities: [__dirname + '/**/*.entity{.ts,.js}'],
-                logging: ['query', 'error', 'schema'],
-                logger: 'advanced-console',
+                entities: [__dirname + "/**/*.entity{.ts,.js}"],
+                logging: ["query", "error", "schema"],
+                logger: "advanced-console",
             }),
-            question_module_1.QuestionModule,
             user_module_1.UserModule,
-            auth_module_1.AuthModule],
+            auth_module_1.AuthModule,
+            socket_module_1.SocketModule,
+            gateway_module_1.GatewayModule,
+        ],
         controllers: [],
-        providers: [],
+        providers: [
+            {
+                provide: core_1.APP_GUARD,
+                useClass: auth_guard_1.JwtGuard,
+            },
+            {
+                provide: core_1.APP_FILTER,
+                useClass: exception_filter_1.HttpExceptionFilter,
+            },
+            {
+                provide: core_1.APP_INTERCEPTOR,
+                useClass: interceptor_1.Interceptor,
+            },
+            {
+                provide: core_1.APP_FILTER,
+                useClass: error_filter_1.NotFoundExceptionFilter,
+            },
+            {
+                provide: core_1.APP_FILTER,
+                useClass: joi_exception_1.JoiExceptionFilter,
+            },
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
