@@ -10,7 +10,6 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_module_1 = require("./domain/user/user.module");
-const config_1 = require("@nestjs/config");
 const env_1 = require("./env");
 const core_1 = require("@nestjs/core");
 const auth_module_1 = require("./infra/auth/auth.module");
@@ -20,6 +19,9 @@ const joi_exception_1 = require("./infra/filters/joi-exception");
 const interceptor_1 = require("./infra/interceptor/interceptor");
 const logger_middleware_1 = require("./infra/logger/logger.middleware");
 const auth_guard_1 = require("./infra/auth/auth.guard");
+const config_1 = require("@nestjs/config");
+const socket_module_1 = require("./domain/socket/socket.module");
+const gateway_module_1 = require("./infra/gateway/gateway.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes("*");
@@ -42,13 +44,15 @@ exports.AppModule = AppModule = __decorate([
                 logger: "advanced-console",
             }),
             user_module_1.UserModule,
-            auth_module_1.AuthModule
+            auth_module_1.AuthModule,
+            socket_module_1.SocketModule,
+            gateway_module_1.GatewayModule,
         ],
         controllers: [],
         providers: [
             {
                 provide: core_1.APP_GUARD,
-                useClass: auth_guard_1.JwtGuard
+                useClass: auth_guard_1.JwtGuard,
             },
             {
                 provide: core_1.APP_FILTER,
