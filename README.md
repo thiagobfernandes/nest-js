@@ -44,7 +44,6 @@ Migration to C++ Desktop Application
 Currently, the project is being migrated to a C++ desktop application to improve performance and efficiency. The desktop version will integrate more directly with the operating system’s network interfaces and allow for greater control over network traffic monitoring.
 Screenshots/Diagrams
 
-Add images of the project structure here.
 
 ![Sem título-2025-02-15-0203](https://github.com/user-attachments/assets/8756af35-dbb3-4698-95db-57e385f48534)
 
