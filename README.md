@@ -47,3 +47,12 @@ Screenshots/Diagrams
 
 ![Sem título-2025-02-15-0203](https://github.com/user-attachments/assets/8756af35-dbb3-4698-95db-57e385f48534)
 
+Network Structure With ARP Spoofing:
+
+![PROJECT excalidraw(3)](https://github.com/user-attachments/assets/a0b638c9-6294-43b9-b5dd-23625c9a0fca)
+
+
+This structure keeps the original description while allowing for the addition of the diagrams that help illustrate the differences. You can update the placeholder for the ARP spoofing diagram once you have it ready.
+
+
+
