@@ -19,8 +19,6 @@ How it Works
 Installation
 
 
-git clone https://github.com/yourusername/network-monitoring-project.git
-
 
 cd network-monitoring-project
 
